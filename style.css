@@ -342,3 +342,24 @@ table tr:hover {
 .secondary:hover {
     background: #2563eb;
 }
+.finance-status-paid {
+    color: green;
+    font-weight: bold;
+}
+
+.finance-status-pending {
+    color: orange;
+    font-weight: bold;
+}
+
+.balance-card {
+    border-left: 5px solid #ef4444;
+}
+
+.paid-card {
+    border-left: 5px solid #10b981;
+}
+
+.fees-card {
+    border-left: 5px solid #3b82f6;
+}
