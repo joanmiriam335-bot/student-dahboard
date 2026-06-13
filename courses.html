@@ -27,10 +27,12 @@
 
         <header class="topbar">
             <h1>My Courses</h1>
+
+            <button id="openCourseModal">Add Course</button>
         </header>
 
         <!-- COURSE GRID -->
-        <section class="course-grid">
+        <section class="course-grid" id="courseGrid">
 
             <div class="course-card">
                 <h3>COS 102</h3>
@@ -66,11 +68,97 @@
                 <h3>SEN 104</h3>
                 <p>Experience Design and Engineering</p>
             </div>
+        
 
         </section>
+        
+    </div>
 
-    </main>
 </div>
+<div class="modal" id="courseModal">
+
+    <div class="modal-box">
+
+        <span class="close" id="closeCourseModal">&times;</span>
+
+        <h2>Add New Course</h2>
+
+        <input
+            type="text"
+            id="courseCode"
+            placeholder="Enter Course Code"
+        >
+
+        <input
+            type="text"
+            id="courseTitle"
+            placeholder="Enter Course Title"
+        >
+
+        <button id="addCourseBtn">
+            Add Course
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+const courseModal = document.getElementById("courseModal");
+const openCourseModal = document.getElementById("openCourseModal");
+const closeCourseModal = document.getElementById("closeCourseModal");
+
+const addCourseBtn = document.getElementById("addCourseBtn");
+
+const courseCode = document.getElementById("courseCode");
+const courseTitle = document.getElementById("courseTitle");
+
+const courseGrid = document.getElementById("courseGrid");
+
+openCourseModal.addEventListener("click", () => {
+    courseModal.style.display = "flex";
+});
+
+closeCourseModal.addEventListener("click", () => {
+    courseModal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+    if (e.target === courseModal) {
+        courseModal.style.display = "none";
+    }
+});
+
+addCourseBtn.addEventListener("click", () => {
+
+    const code = courseCode.value.trim();
+    const title = courseTitle.value.trim();
+
+    if (code === "" || title === "") {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    const newCourse = document.createElement("div");
+
+    newCourse.classList.add("course-card");
+
+    newCourse.innerHTML = `
+        <h3>${code}</h3>
+        <p>${title}</p>
+        <span>Added by Student</span>
+    `;
+
+    courseGrid.appendChild(newCourse);
+
+    courseCode.value = "";
+    courseTitle.value = "";
+
+    courseModal.style.display = "none";
+});
+
+</script>
 
 </body>
 </html>
